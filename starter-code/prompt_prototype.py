@@ -60,41 +60,23 @@ def evaluate_prompt(user_input: str) -> str:
     returning the raw response text.
     """
     api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or "mock-key"
+
+    from google import genai
+    from google.genai import types
     
-    try:
-        # Option A: New Google GenAI SDK (Preferred Standard)
-        from google import genai
-        from google.genai import types
+    client = genai.Client(api_key=api_key)
+    config = types.GenerateContentConfig(
+        system_instruction=SYSTEM_PROMPT,
+        temperature=0.0,  # Setting to 0 for maximum boundary compliance
+    )
+    response = client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=user_input,
+        config=config
+    )
+    return response.text or ""
         
-        client = genai.Client(api_key=api_key)
-        config = types.GenerateContentConfig(
-            system_instruction=SYSTEM_PROMPT,
-            temperature=0.0,  # Setting to 0 for maximum boundary compliance
-        )
-        response = client.models.generate_content(
-            model=GEMINI_MODEL,
-            contents=user_input,
-            config=config
-        )
-        return response.text or ""
-        
-    except (ImportError, Exception):
-        # Option B: Fallback to legacy google-generativeai SDK
-        import google.genai as genai
-        
-        genai.Client(api_key=api_key)
-        model_inst = genai.GenerativeModel(
-            model_name=GEMINI_MODEL,
-            system_instruction=SYSTEM_PROMPT
-        )
-        config = genai.types.GenerationConfig(
-            temperature=0.0
-        )
-        response = model_inst.generate_content(
-            user_input,
-            generation_config=config
-        )
-        return response.text or ""
+   
 
 
 
