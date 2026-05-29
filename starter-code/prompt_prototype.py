@@ -80,7 +80,7 @@ def evaluate_prompt(user_input: str) -> str:
         
     except (ImportError, Exception):
         # Option B: Fallback to legacy google-generativeai SDK
-        import google.generativeai as genai
+        import google.genai as genai
         
         genai.configure(api_key=api_key)
         model_inst = genai.GenerativeModel(
