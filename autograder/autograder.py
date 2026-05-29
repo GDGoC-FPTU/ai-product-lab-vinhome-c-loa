@@ -6,11 +6,23 @@ import importlib.util
 import re
 
 # Đảm bảo mã hóa UTF-8 cho stdout trên mọi nền tảng
+# if sys.stdout.encoding != 'utf-8':
+#     try:
+#         import io
+#         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+#         sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+#     except Exception:
+#         pass
+
+import sys
+from typing import Any
+
 if sys.stdout.encoding != 'utf-8':
     try:
-        import io
-        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+        if hasattr(sys.stdout, 'reconfigure'):
+            sys.stdout.reconfigure(encoding='utf-8')
+        if hasattr(sys.stderr, 'reconfigure'):
+            sys.stderr.reconfigure(encoding='utf-8')
     except Exception:
         pass
 

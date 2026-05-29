@@ -18,6 +18,15 @@ from dotenv import load_dotenv
 
 from google import genai
 
+if sys.stdout.encoding != 'utf-8':
+    try:
+        if hasattr(sys.stdout, 'reconfigure'):
+            sys.stdout.reconfigure(encoding='utf-8')
+        if hasattr(sys.stderr, 'reconfigure'):
+            sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 # Standard Model Identifier
 GEMINI_MODEL = "gemini-2.5-flash"
 
