@@ -82,7 +82,7 @@ def evaluate_prompt(user_input: str) -> str:
         # Option B: Fallback to legacy google-generativeai SDK
         import google.genai as genai
         
-        genai.configure(api_key=api_key)
+        genai.Client(api_key=api_key)
         model_inst = genai.GenerativeModel(
             model_name=GEMINI_MODEL,
             system_instruction=SYSTEM_PROMPT
