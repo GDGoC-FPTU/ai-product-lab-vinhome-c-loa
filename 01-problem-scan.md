@@ -1,4 +1,4 @@
-- Đỗ Tuấn Đạt: 2A202600818
+- Đỗ Tuấn Đạt: 2A202600818 
 # 🔍 Phase 1 — SCAN (Cá nhân, 20 min)
 ### 📝 List bài toán của tôi:
 | # | Subsidiary | Lens | Mô tả ngắn bài toán |
