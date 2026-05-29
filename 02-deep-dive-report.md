@@ -1,5 +1,7 @@
 # 🏗️ Phase 3 — DEEP-DIVE: VinFast Warranty AI
-
+- Đỗ Tuấn Đạt: 2A202600818
+- Hoàng Hiếu Trung: 2A202600702
+- Phan Văn Hiếu: 2A202600732
 ---
 
 ## 3.1. Current-State Workflow Mapping
